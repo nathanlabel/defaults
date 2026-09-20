@@ -15,8 +15,23 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", {
 })
 
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<CR>", {
-  desc = "Open netrw",
+  desc = "Browse files",
   silent = true,
+})
+
+vim.keymap.set("n", "<leader>fn", function()
+  vim.ui.input({ prompt = "New file: ", completion = "file" }, function(path)
+    if not path or path == "" then
+      return
+    end
+    local parent = vim.fn.fnamemodify(path, ":h")
+    if parent ~= "." then
+      vim.fn.mkdir(parent, "p")
+    end
+    vim.cmd.edit(vim.fn.fnameescape(path))
+  end)
+end, {
+  desc = "Create new file",
 })
 
 vim.diagnostic.config({
@@ -50,6 +65,15 @@ require("lazy").setup({
   },
 
   { "williamboman/mason.nvim", opts = { PATH = "prepend" } },
+  { "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local builtin = require("telescope.builtin")
+      vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+      vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Search project text" })
+      vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find open buffers" })
+    end,
+  },
   { "williamboman/mason-lspconfig.nvim",
     opts = { ensure_installed = { "pyright", "powershell_es", "ols", "ts_ls" } },
   },
