@@ -25,4 +25,3 @@ Copy-Item -LiteralPath (Join-Path $nvimSource 'lazy-lock.json') -Destination (Jo
 Copy-Item -LiteralPath $weztermSource -Destination $weztermTarget -Force
 
 git -C $repoRoot status --short
-

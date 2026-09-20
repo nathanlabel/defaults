@@ -23,4 +23,3 @@ The script copies the live configuration into this repository. Review the diff, 
 Copy-Item -Recurse -Force C:\repos\defaults\nvim\* "$env:LOCALAPPDATA\nvim\"
 Copy-Item -Force C:\repos\defaults\wezterm\.wezterm.lua "$env:USERPROFILE\.wezterm.lua"
 ```
-
