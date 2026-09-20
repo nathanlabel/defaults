@@ -11,7 +11,7 @@ config.font_size = 13.0
 
 config.hide_tab_bar_if_only_one_tab = false
 config.window_close_confirmation = 'NeverPrompt'
-config.leader = { key = 'Space', mods = 'CTRL|ALT', timeout_milliseconds = 1000 }
+config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
     -- Tab management. WezTerm handles these before passing input to Neovim.
