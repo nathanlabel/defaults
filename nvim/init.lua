@@ -19,6 +19,11 @@ vim.keymap.set("n", "<leader>e", "<cmd>Explore<CR>", {
   silent = true,
 })
 
+vim.keymap.set("n", "<leader>wc", "<cmd>close<CR>", {
+  desc = "Close active window",
+  silent = true,
+})
+
 vim.keymap.set("n", "<leader>fn", function()
   vim.ui.input({ prompt = "New file: ", completion = "file" }, function(path)
     if not path or path == "" then
