@@ -11,6 +11,7 @@ config.font_size = 13.0
 
 config.hide_tab_bar_if_only_one_tab = false
 config.window_close_confirmation = 'NeverPrompt'
+config.leader = { key = 'Space', mods = 'CTRL|ALT', timeout_milliseconds = 1000 }
 
 config.keys = {
     -- Tab management. WezTerm handles these before passing input to Neovim.
@@ -36,22 +37,22 @@ config.keys = {
     },
     {
         key = 'r',
-        mods = 'CTRL',
+        mods = 'LEADER',
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
     {
         key = 'w',
-        mods = 'CTRL',
+        mods = 'LEADER',
         action = wezterm.action.CloseCurrentPane { confirm = false },
     },
     {
         key = 'd',
-        mods = 'CTRL|SHIFT',
+        mods = 'LEADER',
         action = wezterm.action.SplitPane { direction = 'Down' },
     },
     {
         key = 'l',
-        mods = 'CTRL',
+        mods = 'LEADER',
         action = wezterm.action.SplitPane { direction = 'Left' },
     },
     {
