@@ -16,7 +16,7 @@ config.window_close_confirmation = 'NeverPrompt'
 config.keys = {
     -- Common terminal actions. Default bindings remain available as aliases.
     { key = 'c', mods = 'ALT', action = wezterm.action.CopyTo 'Clipboard' },
-    { key = 'v', mods = 'ALT', action = wezterm.action.PasteFrom 'Clipboard' },
+    { key = 'v', mods = 'ALT|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
     { key = 'f', mods = 'ALT', action = wezterm.action.Search 'CurrentSelectionOrEmptyString' },
     { key = 'p', mods = 'ALT', action = wezterm.action.ActivateCommandPalette },
     { key = 'z', mods = 'ALT', action = wezterm.action.TogglePaneZoomState },
@@ -45,7 +45,7 @@ config.keys = {
         action = wezterm.action.CloseCurrentTab { confirm = false },
     },
     {
-        key = 'r',
+        key = 'h',
         mods = 'ALT',
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
@@ -55,9 +55,9 @@ config.keys = {
         action = wezterm.action.CloseCurrentPane { confirm = false },
     },
     {
-        key = 'd',
+        key = 'v',
         mods = 'ALT',
-        action = wezterm.action.SplitPane { direction = 'Down' },
+        action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
     },
     {
         key = 'l',
@@ -66,7 +66,7 @@ config.keys = {
     },
     {
         key = 'h',
-        mods = 'ALT',
+        mods = 'ALT|SHIFT',
         action = wezterm.action.ActivatePaneDirection 'Left',
     },
     {
