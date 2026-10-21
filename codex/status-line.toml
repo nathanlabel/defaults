@@ -1,0 +1,4 @@
+# Merge these entries into [tui] in %USERPROFILE%\.codex\config.toml.
+# Context shows percent used; the 5-hour and weekly limits show percent left.
+[tui]
+status_line = ["context-used", "five-hour-limit", "weekly-limit", "model-with-reasoning", "used-tokens"]
