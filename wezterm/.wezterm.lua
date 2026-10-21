@@ -11,9 +11,18 @@ config.font_size = 13.0
 
 config.hide_tab_bar_if_only_one_tab = false
 config.window_close_confirmation = 'NeverPrompt'
-config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 1000 }
+-- Use Alt directly for terminal shortcuts; keep the standard Ctrl-Tab bindings.
 
 config.keys = {
+    -- Common terminal actions. Default bindings remain available as aliases.
+    { key = 'c', mods = 'ALT', action = wezterm.action.CopyTo 'Clipboard' },
+    { key = 'v', mods = 'ALT', action = wezterm.action.PasteFrom 'Clipboard' },
+    { key = 'f', mods = 'ALT', action = wezterm.action.Search 'CurrentSelectionOrEmptyString' },
+    { key = 'p', mods = 'ALT', action = wezterm.action.ActivateCommandPalette },
+    { key = 'z', mods = 'ALT', action = wezterm.action.TogglePaneZoomState },
+    { key = 'n', mods = 'ALT', action = wezterm.action.SpawnWindow },
+    { key = 'x', mods = 'ALT', action = wezterm.action.ActivateCopyMode },
+    { key = 'r', mods = 'ALT|SHIFT', action = wezterm.action.ReloadConfiguration },
     -- Tab management. WezTerm handles these before passing input to Neovim.
     {
         key = 'Tab',
@@ -27,32 +36,32 @@ config.keys = {
     },
     {
         key = 't',
-        mods = 'CTRL|SHIFT',
+        mods = 'ALT',
         action = wezterm.action.SpawnTab 'CurrentPaneDomain',
     },
     {
         key = 'w',
-        mods = 'CTRL|SHIFT',
+        mods = 'ALT|SHIFT',
         action = wezterm.action.CloseCurrentTab { confirm = false },
     },
     {
         key = 'r',
-        mods = 'LEADER',
+        mods = 'ALT',
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
     {
         key = 'w',
-        mods = 'LEADER',
+        mods = 'ALT',
         action = wezterm.action.CloseCurrentPane { confirm = false },
     },
     {
         key = 'd',
-        mods = 'LEADER',
+        mods = 'ALT',
         action = wezterm.action.SplitPane { direction = 'Down' },
     },
     {
         key = 'l',
-        mods = 'LEADER',
+        mods = 'ALT|SHIFT',
         action = wezterm.action.SplitPane { direction = 'Left' },
     },
     {
@@ -77,22 +86,22 @@ config.keys = {
     },
     {
         key = 'LeftArrow',
-        mods = 'CTRL|ALT',
+        mods = 'ALT',
         action = wezterm.action.AdjustPaneSize { 'Left', 5 },
     },
     {
         key = 'RightArrow',
-        mods = 'CTRL|ALT',
+        mods = 'ALT',
         action = wezterm.action.AdjustPaneSize { 'Right', 5 },
     },
     {
         key = 'UpArrow',
-        mods = 'CTRL|ALT',
+        mods = 'ALT',
         action = wezterm.action.AdjustPaneSize { 'Up', 5 },
     },
     {
         key = 'DownArrow',
-        mods = 'CTRL|ALT',
+        mods = 'ALT',
         action = wezterm.action.AdjustPaneSize { 'Down', 5 },
     },
 }
