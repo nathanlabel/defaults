@@ -15,7 +15,7 @@ config.window_close_confirmation = 'NeverPrompt'
 
 config.keys = {
     -- Common terminal actions. Default bindings remain available as aliases.
-    { key = 'c', mods = 'ALT', action = wezterm.action.CopyTo 'Clipboard' },
+    { key = 'c', mods = 'ALT|SHIFT', action = wezterm.action.CopyTo 'Clipboard' },
     { key = 'v', mods = 'ALT|SHIFT', action = wezterm.action.PasteFrom 'Clipboard' },
     { key = 'f', mods = 'ALT', action = wezterm.action.Search 'CurrentSelectionOrEmptyString' },
     { key = 'p', mods = 'ALT', action = wezterm.action.ActivateCommandPalette },
@@ -24,6 +24,7 @@ config.keys = {
     { key = 'x', mods = 'ALT', action = wezterm.action.ActivateCopyMode },
     { key = 'r', mods = 'ALT|SHIFT', action = wezterm.action.ReloadConfiguration },
     -- Tab management. WezTerm handles these before passing input to Neovim.
+    { key = 'c', mods = 'ALT', action = wezterm.action.SpawnTab 'CurrentPaneDomain' },
     {
         key = 'Tab',
         mods = 'CTRL',
@@ -45,7 +46,7 @@ config.keys = {
         action = wezterm.action.CloseCurrentTab { confirm = false },
     },
     {
-        key = 'h',
+        key = 's',
         mods = 'ALT',
         action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
     },
@@ -66,7 +67,7 @@ config.keys = {
     },
     {
         key = 'h',
-        mods = 'ALT|SHIFT',
+        mods = 'ALT',
         action = wezterm.action.ActivatePaneDirection 'Left',
     },
     {
