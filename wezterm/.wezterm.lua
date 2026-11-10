@@ -20,6 +20,7 @@ config.keys = {
     { key = 'f', mods = 'ALT', action = wezterm.action.Search 'CurrentSelectionOrEmptyString' },
     { key = 'p', mods = 'ALT', action = wezterm.action.ActivateCommandPalette },
     { key = 'z', mods = 'ALT', action = wezterm.action.TogglePaneZoomState },
+    { key = 'q', mods = 'ALT', action = wezterm.action.CloseCurrentPane { confirm = false } },
     { key = 'n', mods = 'ALT', action = wezterm.action.SpawnWindow },
     { key = 'x', mods = 'ALT', action = wezterm.action.ActivateCopyMode },
     { key = 'r', mods = 'ALT|SHIFT', action = wezterm.action.ReloadConfiguration },
