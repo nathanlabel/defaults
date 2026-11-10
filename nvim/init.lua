@@ -173,6 +173,8 @@ require("lazy").setup({
   build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
+      -- Keep parser updates in the runtime directory Neovim searches first.
+      parser_install_dir = vim.fn.stdpath("data") .. "/site",
       ensure_installed = { "python", "lua", "markdown", "markdown_inline", "odin", "typescript", "javascript", "tsx", "json" },
       highlight = { enable = true },
     })
