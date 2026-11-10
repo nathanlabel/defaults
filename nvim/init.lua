@@ -14,13 +14,38 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", {
   silent = true,
 })
 
-vim.keymap.set("n", "<F1>", "<cmd>!npm run check<CR>", {
-  desc = "Run npm check",
-})
+local function run_npm_in_pane(command)
+  if not vim.env.WEZTERM_PANE or vim.fn.executable("wezterm") == 0 then
+    vim.notify("Run Neovim inside WezTerm to open an npm pane", vim.log.levels.ERROR)
+    return
+  end
 
-vim.keymap.set("n", "<F2>", "<cmd>!npm start<CR>", {
-  desc = "Start npm app",
-})
+  local shell = vim.fn.exepath("pwsh")
+  if shell == "" then
+    shell = vim.fn.exepath("powershell")
+  end
+  -- Keep the shell open so command output and errors remain available.
+  vim.system({
+    "wezterm", "cli", "split-pane", "--pane-id", vim.env.WEZTERM_PANE,
+    "--bottom", "--percent", "40", "--cwd", vim.fn.getcwd(), "--",
+    shell, "-NoLogo", "-NoProfile", "-NoExit", "-Command",
+    "& npm.cmd " .. command .. "; Write-Host ('npm exited with code {0}' -f $LASTEXITCODE)",
+  }, { text = true }, function(result)
+    if result.code ~= 0 then
+      vim.schedule(function()
+        vim.notify("Could not open npm pane: " .. (result.stderr or ""), vim.log.levels.ERROR)
+      end)
+    end
+  end)
+end
+
+vim.keymap.set("n", "<F1>", function()
+  run_npm_in_pane("run check")
+end, { desc = "Run npm check in a WezTerm pane" })
+
+vim.keymap.set("n", "<F2>", function()
+  run_npm_in_pane("start")
+end, { desc = "Start npm app in a WezTerm pane" })
 
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<CR>", {
   desc = "Browse files",
