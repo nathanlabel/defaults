@@ -14,6 +14,14 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", {
   silent = true,
 })
 
+vim.keymap.set("n", "<F1>", "<cmd>!npm run check<CR>", {
+  desc = "Run npm check",
+})
+
+vim.keymap.set("n", "<F2>", "<cmd>!npm start<CR>", {
+  desc = "Start npm app",
+})
+
 vim.keymap.set("n", "<leader>e", "<cmd>Explore<CR>", {
   desc = "Browse files",
   silent = true,
